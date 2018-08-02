@@ -1,0 +1,29 @@
+version: "3.2"
+services:
+  mongod:
+    build: ./mongod
+    networks:
+      - webnet
+    volumes:
+      - type: volume
+        source: mongo_data
+        target: /var/lib/mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+  redis:
+    build: ./redis
+    networks:
+      - webnet
+    volumes:
+      - type: volume
+        source: redis_data
+        target: /var/lib/redis
+    restart: always
+    ports:
+      - "6379:6379"
+networks:
+  webnet:
+volumes:
+  mongo_data:
+  redis_data:
