@@ -22,6 +22,19 @@ services:
     restart: always
     ports:
       - "6379:6379"
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:8080"
+    networks:
+      - webnet
+    # volumes:
+    #   - type: volume
+    #     source: /Users/lionel/code/dashboard-webapp
+    #     target: /etc/nginx/html
+    volumes:
+    - /Users/lionel/code/dashboard-webapp:/etc/nginx/html
+    restart: always
 networks:
   webnet:
 volumes:
