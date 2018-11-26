@@ -35,6 +35,17 @@ services:
     volumes:
     - /Users/lionel/code/dashboard-webapp:/etc/nginx/html
     restart: always
+  rethinkdb:
+    build: ./rethinkdb
+    ports:
+      - "8081:8080"
+      - "28015:28015"
+      - "29015:29015"
+    networks:
+      - webnet
+    volumes:
+      - ${PWD}/data:/data
+    restart: always
 networks:
   webnet:
 volumes:
